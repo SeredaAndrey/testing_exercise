@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-08-phonebook",
+  "name": "testing_exercise",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://seredaandrey.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://seredaandrey.github.io/testing_exercise/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@reduxjs/toolkit": "^1.9.1",

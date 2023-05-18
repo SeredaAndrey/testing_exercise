@@ -1,4 +1,4 @@
-import { ThemeProvider } from 'react-bootstrap';
+import { ThemeProvider } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -8,9 +8,8 @@ import {
   selectIsRefreshing,
 } from 'redux/selectors';
 
-import { theme } from 'theme/theme';
+import { theme } from 'theme';
 
-// import GlobalStyle from './GlobalStyle/GlobalStyle';
 import RegisterPage from './Registration/RegistredPage';
 import LoginPage from './Login/LoginPage';
 import HomePage from './Home/home';
@@ -21,7 +20,6 @@ export const App = () => {
   const isLoading = useSelector(selectIsLoading);
   return (
     <ThemeProvider theme={theme}>
-      {/* <GlobalStyle> */}
       {isRefreshing || isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -54,7 +52,6 @@ export const App = () => {
           </Route>
         </Routes>
       )}
-      {/* </GlobalStyle> */}
     </ThemeProvider>
   );
 };
@@ -63,12 +60,11 @@ const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
 
-  // return isLoggedIn ? (
-  //   <Navigate to={location.state?.from ?? redirectTo} />
-  // ) : (
-  //   Component
-  // );
-  return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+  return isLoggedIn ? (
+    <Navigate to={location.state?.from ?? redirectTo} />
+  ) : (
+    Component
+  );
 };
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
@@ -78,10 +74,9 @@ export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
 
   const shoudRedirect = !isLoggedIn && !isRefreshing;
 
-  // return shoudRedirect ? (
-  //   <Navigate to={redirectTo} state={{ from: location }} />
-  // ) : (
-  //   Component
-  // );
-  return shoudRedirect ? <Navigate to={redirectTo} /> : Component;
+  return shoudRedirect ? (
+    <Navigate to={redirectTo} state={{ from: location }} />
+  ) : (
+    Component
+  );
 };

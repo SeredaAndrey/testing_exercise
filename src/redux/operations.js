@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -8,7 +9,8 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      return ({ data } = await axios.post('/user', credentials));
+      const { data } = await axios.post('/user', credentials);
+      return data;
     } catch (error) {
       if (error.response.status === 409) {
         toast.error('This email already exists');
@@ -24,7 +26,8 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      return ({ data } = await axios.get('/user', credentials));
+      const { data } = await axios.get('/user', credentials);
+      return data;
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Email or password is wrong');

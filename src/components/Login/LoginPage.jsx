@@ -9,7 +9,7 @@ import {
   LoginTitle,
   Button,
   Text,
-  FoneImage,
+  // FoneImage,
 } from './LoginPageStyles';
 import shortid from 'shortid';
 import { login } from 'redux/operations';
@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   return (
     <LoginContainer>
-      <FoneImage src="../images/picture_fon.png" alt="fon" />
+      {/* <FoneImage src="../images/picture_fon.png" alt="fon" /> */}
       <LoginTitle>Login</LoginTitle>
       <InputForm onSubmit={handleSubmit} autoComplete="off">
         <InputLabel htmlFor="userInputId">

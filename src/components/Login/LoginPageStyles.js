@@ -27,6 +27,11 @@ export const LoginContainer = styled.div`
   border-radius: ${p => p.theme.radii.big};
 
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+
+  background-image: url('./images/picture_fon.png');
+  background-size: 308px 168px;
+  background-position-x: 36px;
+  background-position-y: 20px;
 `;
 
 export const LoginTitle = styled.h2`
@@ -118,11 +123,11 @@ export const Text = styled.p`
   color: ${p => p.theme.colors.colorTextLight};
 `;
 
-export const FoneImage = styled.img`
-  position: absolute;
+// export const FoneImage = styled.img`
+//   position: absolute;
 
-  top: ${p => p.theme.space[4]};
+//   top: ${p => p.theme.space[4]};
 
-  width: ${p => p.theme.space[12]};
-  height: ${p => p.theme.space[9]};
-`;
+//   width: ${p => p.theme.space[12]};
+//   height: ${p => p.theme.space[9]};
+// `;

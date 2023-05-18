@@ -42,6 +42,7 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         state.userId = payload.data._id;
         state.name = payload.data.user;
+        state.avatarUrl = payload.data.avatar;
         state.error = null;
       })
       .addCase(login.rejected, (state, { payload }) => {

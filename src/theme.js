@@ -11,6 +11,8 @@ export const theme = {
 
     colorButtonActive: '#5CD3A8',
     colorButtonNoActive: '#EBD8FF',
+
+    colorLine: '#EBD8FF',
   },
   space: [
     0,
@@ -21,11 +23,15 @@ export const theme = {
     '32px',
     '48px',
     '64px',
+    '80px',
+    '100px',
     '128px',
     '168px',
     '192px',
     '256px',
     '304px',
+    '380px',
+    '775px',
   ],
 
   fontSizes: {
@@ -45,6 +51,7 @@ export const theme = {
   borders: {
     none: 'none',
     normal: '1px solid',
+    picture: '13px solid',
   },
   radii: {
     none: '0',

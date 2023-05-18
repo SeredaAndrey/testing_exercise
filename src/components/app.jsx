@@ -12,7 +12,7 @@ import { theme } from 'theme';
 
 import RegisterPage from './Registration/RegistredPage';
 import LoginPage from './Login/LoginPage';
-import HomePage from './Home/home';
+import HomePage from './Home/HomePage';
 import SharedLayout from './Shared/shared';
 
 export const App = () => {

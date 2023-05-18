@@ -28,14 +28,14 @@ export const LoginContainer = styled.div`
 
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
 
-  background-image: url('./images/picture_fon.png');
+  /* background-image: url('./images/picture_fon.png');
   background-size: 308px 168px;
   background-position-x: 36px;
-  background-position-y: 20px;
+  background-position-y: 20px; */
 `;
 
 export const LoginTitle = styled.h2`
-  margin-top: ${p => p.theme.space[9]};
+  margin-top: ${p => p.theme.space[11]};
   margin-bottom: ${p => p.theme.space[3]};
 
   color: ${p => p.theme.colors.colorTextLight};
@@ -62,7 +62,7 @@ export const InputForm = styled.form`
 
 export const InputLabel = styled.label`
   height: ${p => p.theme.space[5]};
-  width: ${p => p.theme.space[12]};
+  width: ${p => p.theme.space[14]};
 
   padding: ${p => p.theme.space[0]};
   margin: ${p => p.theme.space[0]};
@@ -70,7 +70,7 @@ export const InputLabel = styled.label`
 
 export const Input = styled.input`
   height: ${p => p.theme.space[5]};
-  width: ${p => p.theme.space[12]};
+  width: ${p => p.theme.space[14]};
 
   padding: ${p => p.theme.space[0]};
   margin: ${p => p.theme.space[0]};
@@ -92,7 +92,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   display: block;
 
-  width: ${p => p.theme.space[10]};
+  width: ${p => p.theme.space[12]};
   height: ${p => p.theme.space[6]};
 
   padding: ${p => p.theme.space[0]};

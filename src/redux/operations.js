@@ -1,46 +1,43 @@
-/* eslint-disable no-unused-vars */
 import axios from 'axios';
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://63be9521585bedcb36b10d3c.mockapi.io/';
+axios.defaults.baseURL = 'https://prepare-test-api-service.onrender.com/api';
 
-export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
-  async (_, thunkAPI) => {
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue }) => {
     try {
-      const responce = await axios.get('/contacts');
-      return responce.data;
+      return ({ data } = await axios.post('/user', credentials));
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response.status === 409) {
+        toast.error('This email already exists');
+        return rejectWithValue(error.message);
+      }
+      toast.error('This email already exists');
+      return rejectWithValue(error.message);
     }
   }
 );
 
-export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (contactId, thunkAPI) => {
+export const login = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
     try {
-      const responce = await axios.delete(`/contacts/${contactId}`);
-
-      return responce.data;
+      return ({ data } = await axios.get('/user', credentials));
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response.status === 401) {
+        toast.error('Email or password is wrong');
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue(error.message);
     }
   }
 );
 
-export const addContact = createAsyncThunk(
-  'contacts/addContacts',
-  async ({ name, number }, thunkAPI) => {
-    try {
-      const responce = await axios.post('/contacts', {
-        name,
-        number,
-      });
-
-      return responce.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (credentials, { rejectWithValue }) => {
+    return { status: 'ok' };
   }
 );

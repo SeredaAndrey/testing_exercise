@@ -1,25 +1,23 @@
-import { BrowserRouter } from 'react-router-dom';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from '@emotion/react';
-import { Provider } from 'react-redux';
+import React from 'react';
 
-import { App } from 'components/App';
+import { App } from 'components/app';
 import './index.css';
 
-import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { theme } from './components/theme';
+import { store, persistor } from 'redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      {/* <BrowserRouter basename="/goit-react-hw-08-phonebook/"> */}
-      <BrowserRouter>
-        <Provider store={store}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/prepapre_test">
           <App />
-        </Provider>
-      </BrowserRouter>
-    </ThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

@@ -5,6 +5,9 @@ import {
   HeaderName,
   HomeHeader,
   ImageHeaderContainer,
+  InneerHeaderContainer1,
+  InneerHeaderContainer2,
+  InneerHeaderContainer3,
 } from './HeaderPageStyle';
 
 import { selectIsAvatar, selectIsName } from 'redux/selectors';
@@ -15,10 +18,15 @@ const HeaderPage = () => {
 
   return (
     <HomeHeader>
-      <ImageHeaderContainer>
-        <HeaderImage src={userAvatar} />
-      </ImageHeaderContainer>
-      <HeaderName>{userName}</HeaderName>
+      <InneerHeaderContainer1>
+        <HeaderName>{userName}</HeaderName>
+      </InneerHeaderContainer1>
+      <InneerHeaderContainer2>
+        <ImageHeaderContainer>
+          <HeaderImage src={userAvatar} alt={userName} />
+        </ImageHeaderContainer>
+      </InneerHeaderContainer2>
+      <InneerHeaderContainer3></InneerHeaderContainer3>
     </HomeHeader>
   );
 };

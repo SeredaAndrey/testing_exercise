@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { login, logout, register } from './operations';
+import { fetchUserData } from 'ApiService/ApiService';
 
 const initialState = {
   name: null,
   avatarUrl: null,
   userId: null,
+  following: [],
   isLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
@@ -24,8 +26,10 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.userId = payload._id;
-        state.user = payload.user;
+        state.userId = payload.data._id;
+        state.name = payload.data.user;
+        state.following = payload.data.following;
+        state.avatarUrl = payload.data.avatar;
         state.error = null;
       })
       .addCase(register.rejected, (state, { payload }) => {
@@ -37,11 +41,11 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
-        console.log('payload: ', payload);
         state.isLoading = false;
         state.isLoggedIn = true;
         state.userId = payload.data._id;
         state.name = payload.data.user;
+        state.following = payload.data.following;
         state.avatarUrl = payload.data.avatar;
         state.error = null;
       })
@@ -61,6 +65,22 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logout.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      //LoadUserData
+      .addCase(fetchUserData.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchUserData.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+        state.name = payload.user.user;
+        state.following = payload.user.following;
+        state.avatarUrl = payload.user.avatar;
+        state.error = null;
+      })
+      .addCase(fetchUserData.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

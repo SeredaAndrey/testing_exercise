@@ -1,8 +1,4 @@
-import {
-  fetchSubscribeFollowers,
-  fetchUserData,
-  fetchUsers,
-} from 'ApiService/ApiService';
+import { fetchSubscribeFollowers, fetchUsers } from 'ApiService/ApiService';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,13 +25,6 @@ const ListPage = () => {
     };
     fetchData();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     dispatch(fetchUserData(userId));
-  //   };
-  //   fetchData();
-  // }, []);
 
   const checkForFollowed = _id => {
     for (const id of following) {

@@ -115,7 +115,7 @@ const ListPage = () => {
         <PaginationText>
           loading{' '}
           <PaginationNumber>
-            {page * countInPage}/{count}
+            {(page - 1) * 3 + countInPage}/{count}
           </PaginationNumber>
         </PaginationText>
       </ButtonMoreContainer>

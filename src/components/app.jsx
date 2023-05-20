@@ -1,7 +1,9 @@
 import { ThemeProvider } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
+
+import { Circles } from 'react-loader-spinner';
 
 import {
   selectIsLoading,
@@ -16,6 +18,7 @@ import LoginPage from './Login/LoginPage';
 import HomePage from './Home/HomePage';
 import SharedLayout from './Shared/shared';
 import { fetchUserData } from 'ApiService/ApiService';
+import { SpinnerContainer } from './appStyled';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,26 +36,28 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       {isLoading ? (
-        <p>Loading...</p>
+        <SpinnerContainer>
+          <Circles
+            height="80"
+            width="80"
+            color="#EBD8FF"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </SpinnerContainer>
       ) : (
         <Routes>
           <Route
-            path="/home"
-            element={
-              <RestrictedRoute redirectTo="/" component={<HomePage />} />
-            }
-          ></Route>
-          <Route
             path="/register"
             element={
-              <RestrictedRoute redirectTo="/" component={<RegisterPage />} />
+              <PublicRoute redirectTo="/" component={<RegisterPage />} />
             }
           ></Route>
           <Route
             path="/login"
-            element={
-              <RestrictedRoute redirectTo="/" component={<LoginPage />} />
-            }
+            element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
           ></Route>
           <Route path="/" element={<SharedLayout />}>
             <Route
@@ -61,42 +66,35 @@ export const App = () => {
                 <PrivateRoute redirectTo="/login" component={<HomePage />} />
               }
             ></Route>
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute redirectTo="/login" component={<HomePage />} />
+              }
+            ></Route>
+            <Route
+              path="*"
+              element={
+                <PublicRoute redirectTo="/login" component={<HomePage />} />
+              }
+            ></Route>
           </Route>
-          <Route
-            path="*"
-            element={
-              <RestrictedRoute redirectTo="/login" component={<HomePage />} />
-            }
-          ></Route>
         </Routes>
       )}
     </ThemeProvider>
   );
 };
 
-const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
+const PublicRoute = ({ component: Component, redirectTo = '/' }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const location = useLocation();
 
-  return isLoggedIn ? (
-    <Navigate to={location.state?.from ?? redirectTo} />
-  ) : (
-    Component
-  );
+  return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
 };
 
-export const PrivateRoute = ({
-  component: Component,
-  redirectTo = '/login',
-}) => {
+export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const location = useLocation();
 
   const shoudRedirect = !isLoggedIn;
 
-  return shoudRedirect ? (
-    <Navigate to={redirectTo} state={{ from: location }} />
-  ) : (
-    Component
-  );
+  return shoudRedirect ? <Navigate to={redirectTo} /> : Component;
 };

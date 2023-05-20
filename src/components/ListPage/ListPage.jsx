@@ -22,6 +22,8 @@ import {
   selectInPage,
   selectIsUsers,
 } from 'redux/usersSelectors';
+import { SpinnerContainer } from 'components/appStyled';
+import { Circles } from 'react-loader-spinner';
 
 const ListPage = () => {
   const dispatch = useDispatch();
@@ -64,7 +66,19 @@ const ListPage = () => {
 
   return (
     <BodyContainer>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <SpinnerContainer>
+          <Circles
+            height="80"
+            width="80"
+            color="#EBD8FF"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </SpinnerContainer>
+      )}
       {users.length !== 0 ? (
         <ListContainer>
           {users.map(({ _id, user, avatar, followers, tweets }) => {
@@ -82,7 +96,17 @@ const ListPage = () => {
           })}
         </ListContainer>
       ) : (
-        <p>Loading...</p>
+        <SpinnerContainer>
+          <Circles
+            height="80"
+            width="80"
+            color="#EBD8FF"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </SpinnerContainer>
       )}
       <ButtonMoreContainer>
         <ButtonMore type="button" onClick={onClickMore}>

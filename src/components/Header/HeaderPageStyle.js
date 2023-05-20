@@ -90,6 +90,8 @@ export const HeaderImage = styled.img`
   width: ${p => p.theme.space[7]};
 
   border-radius: ${p => p.theme.radii.round};
+
+  background-color: ${p => p.theme.colors.bgColorFoto};
 `;
 
 export const HeaderName = styled.p`

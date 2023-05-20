@@ -7,15 +7,17 @@ import {
   InputLabel,
   LoginContainer,
   LoginTitle,
-  Button,
-  Text,
+  ButtonRegister,
+  ButtonNavigateReg,
 } from './RegistredPageStyles';
 import shortid from 'shortid';
-import { register } from 'redux/operations';
+import { register } from 'redux/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [user, setUser] = useState('');
   const dispatch = useDispatch();
+  const navigation = useNavigate();
 
   const userInputId = shortid.generate();
 
@@ -42,9 +44,16 @@ const RegisterPage = () => {
             id={userInputId}
           />
         </InputLabel>
-        <Button type="submit">Registration</Button>
+        <ButtonRegister type="submit">Registration</ButtonRegister>
       </InputForm>
-      <Text>have an account? log in</Text>
+      <ButtonNavigateReg
+        type="button"
+        onClick={() => {
+          navigation('/login');
+        }}
+      >
+        have an account? log in
+      </ButtonNavigateReg>
     </LoginContainer>
   );
 };

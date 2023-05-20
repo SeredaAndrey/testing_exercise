@@ -1,40 +1,65 @@
-import { fetchSubscribeFollowers, fetchUsers } from 'ApiService/ApiService';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
   selectIsFollowing,
   selectIsLoading,
   selectIsUserId,
-} from 'redux/selectors';
+} from 'redux/authSelectors';
 import ListItem from './ListItem';
-import { BodyContainer, ListContainer } from './ListPageStyles';
+import {
+  BodyContainer,
+  ButtonMore,
+  ButtonMoreContainer,
+  ListContainer,
+  PaginationNumber,
+  PaginationText,
+} from './ListPageStyles';
+import { fetchSubscribeFollowers, getUsers } from 'redux/usersOperators';
+import {
+  selectInCount,
+  selectInCountInPage,
+  selectInPage,
+  selectIsUsers,
+} from 'redux/usersSelectors';
 
 const ListPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const following = useSelector(selectIsFollowing);
   const userId = useSelector(selectIsUserId);
-  const [users, setUsers] = useState([]);
+  const users = useSelector(selectIsUsers);
+  const page = useSelector(selectInPage);
+  const count = useSelector(selectInCount);
+  const countInPage = useSelector(selectInCountInPage);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const usersData = await fetchUsers();
-      setUsers(usersData.users);
-      return usersData;
-    };
-    fetchData();
-  }, [dispatch]);
+    if (!page) {
+      const fetchData = async () => {
+        dispatch(getUsers({ page: 1, limit: 3 }));
+      };
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const checkForFollowed = _id => {
     for (const id of following) {
-      if (_id === id) return id;
+      if (_id === id) return true;
     }
     return false;
   };
 
   const onClickFollowers = async _id => {
-    await dispatch(fetchSubscribeFollowers(_id, userId));
+    dispatch(fetchSubscribeFollowers({ _id, userId }));
+  };
+
+  const onClickMore = () => {
+    if (Math.ceil(count / 3) < page + 1) {
+      return;
+    } else {
+      dispatch(getUsers({ page: page + 1, limit: 3 }));
+    }
   };
 
   return (
@@ -50,7 +75,7 @@ const ListPage = () => {
                 avatar={avatar}
                 followers={followers}
                 tweets={tweets}
-                following={checkForFollowed(_id)}
+                followingFlag={checkForFollowed(_id)}
                 onClickFollowers={onClickFollowers}
               />
             );
@@ -59,6 +84,17 @@ const ListPage = () => {
       ) : (
         <p>Loading...</p>
       )}
+      <ButtonMoreContainer>
+        <ButtonMore type="button" onClick={onClickMore}>
+          Load more
+        </ButtonMore>
+        <PaginationText>
+          loading{' '}
+          <PaginationNumber>
+            {page * countInPage}/{count}
+          </PaginationNumber>
+        </PaginationText>
+      </ButtonMoreContainer>
     </BodyContainer>
   );
 };

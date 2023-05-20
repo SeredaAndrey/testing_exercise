@@ -4,26 +4,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://prepare-test-api-service.onrender.com/api';
 
-export const fetchUsers = async () => {
-  try {
-    const { data } = await axios.get('/user');
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const fetchSubscribeFollowers = async (_id, userId) => {
-  try {
-    const { data } = await axios.patch(`/user/following/${_id}`, {
-      _id: userId,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const fetchUserData = createAsyncThunk(
   'user/loadData',
   async (userId, { rejectWithValue }) => {

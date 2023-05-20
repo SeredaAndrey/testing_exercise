@@ -7,16 +7,18 @@ import {
   InputLabel,
   LoginContainer,
   LoginTitle,
-  Button,
-  Text,
+  ButtonLogin,
+  ButtonNavigateLogin,
   // FoneImage,
 } from './LoginPageStyles';
 import shortid from 'shortid';
-import { login } from 'redux/operations';
+import { login } from 'redux/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [user, setUser] = useState('');
   const dispatch = useDispatch();
+  const navigation = useNavigate();
 
   const userInputId = shortid.generate();
 
@@ -44,9 +46,16 @@ const LoginPage = () => {
             id={userInputId}
           />
         </InputLabel>
-        <Button type="submit">Login</Button>
+        <ButtonLogin type="submit">Login</ButtonLogin>
       </InputForm>
-      <Text>no account? register</Text>
+      <ButtonNavigateLogin
+        type="button"
+        onClick={() => {
+          navigation('/register');
+        }}
+      >
+        no account? register
+      </ButtonNavigateLogin>
     </LoginContainer>
   );
 };

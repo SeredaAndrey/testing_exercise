@@ -1,4 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FiLogOut } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 import {
   HeaderImage,
@@ -8,13 +10,22 @@ import {
   InneerHeaderContainer1,
   InneerHeaderContainer2,
   InneerHeaderContainer3,
+  LogoutIco,
 } from './HeaderPageStyle';
 
-import { selectIsAvatar, selectIsName } from 'redux/selectors';
+import { selectIsAvatar, selectIsName } from 'redux/authSelectors';
+import { logout } from 'redux/authOperations';
 
 const HeaderPage = () => {
   const userAvatar = useSelector(selectIsAvatar);
   const userName = useSelector(selectIsName);
+  const dispatch = useDispatch();
+  const navigation = useNavigate();
+
+  const onLogout = () => {
+    dispatch(logout());
+    navigation('/login');
+  };
 
   return (
     <HomeHeader>
@@ -26,7 +37,11 @@ const HeaderPage = () => {
           <HeaderImage src={userAvatar} alt={userName} />
         </ImageHeaderContainer>
       </InneerHeaderContainer2>
-      <InneerHeaderContainer3></InneerHeaderContainer3>
+      <InneerHeaderContainer3>
+        <LogoutIco onClick={onLogout}>
+          <FiLogOut />
+        </LogoutIco>
+      </InneerHeaderContainer3>
     </HomeHeader>
   );
 };

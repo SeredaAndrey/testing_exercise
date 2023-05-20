@@ -1,13 +1,18 @@
 import styled from '@emotion/styled';
 
 export const HomeHeader = styled.header`
+  position: fixed;
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-top: ${p => p.theme.space[5]};
-  margin-left: auto;
-  margin-right: auto;
+  top: ${p => p.theme.space[4]};
+
+  /* margin-top: ${p => p.theme.space[5]}; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
 
   padding: ${p => p.theme.space[0]};
 
@@ -53,6 +58,9 @@ export const InneerHeaderContainer2 = styled.div`
 `;
 
 export const InneerHeaderContainer3 = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+
   height: calc((100%-${p => p.theme.space[4]}) / 2);
   width: 100%;
 `;
@@ -97,4 +105,12 @@ export const HeaderName = styled.p`
   font-size: ${p => p.theme.fontSizes.l};
   line-height: ${p => p.theme.fontSizes.xl};
   text-transform: uppercase;
+`;
+
+export const LogoutIco = styled.button`
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  margin-top: ${p => p.theme.space[4]};
+  margin-right: ${p => p.theme.space[4]};
 `;

@@ -82,7 +82,7 @@ export const Input = styled.input`
   line-height: ${p => p.theme.fontSizes.xl};
 `;
 
-export const Button = styled.button`
+export const ButtonRegister = styled.button`
   display: block;
 
   width: ${p => p.theme.space[12]};
@@ -105,7 +105,14 @@ export const Button = styled.button`
   text-transform: uppercase;
 `;
 
-export const Text = styled.p`
+export const ButtonNavigateReg = styled.button`
+  margin-top: ${p => p.theme.space[3]};
+
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;

@@ -7,7 +7,7 @@ import {
   selectIsLoading,
   selectIsLoggedIn,
   selectIsUserId,
-} from 'redux/selectors';
+} from 'redux/authSelectors';
 
 import { theme } from 'theme';
 

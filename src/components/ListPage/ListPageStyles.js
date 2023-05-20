@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const BodyContainer = styled.div`
+  transform: translateY(${p => p.theme.space[9]});
+
   margin-top: ${p => p.theme.space[5]};
 
   margin-left: auto;
@@ -10,6 +12,8 @@ export const BodyContainer = styled.div`
 `;
 
 export const ListContainer = styled.ul`
+  overflow: hidden;
+
   margin-top: ${p => p.theme.space[0]};
 
   margin-left: auto;
@@ -138,7 +142,7 @@ export const ButtonListItem = styled.button`
   border-radius: ${p => p.theme.radii.normal};
 
   background-color: ${p =>
-    p.following
+    p.followingFlag
       ? p.theme.colors.colorButtonActive
       : p.theme.colors.colorButtonNoActive};
 
@@ -152,4 +156,48 @@ export const ButtonListItem = styled.button`
   text-transform: uppercase;
 
   cursor: pointer;
+`;
+export const ButtonMoreContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
+export const ButtonMore = styled.button`
+  display: block;
+
+  width: ${p => p.theme.space[12]};
+  height: ${p => p.theme.space[6]};
+
+  padding: ${p => p.theme.space[0]};
+
+  margin-bottom: ${p => p.theme.space[5]};
+
+  border-radius: ${p => p.theme.radii.normal};
+
+  background-color: ${p => p.theme.colors.colorButtonNoActive};
+
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.l};
+  line-height: ${p => p.theme.fontSizes.xl};
+  text-transform: uppercase;
+
+  cursor: pointer;
+`;
+export const PaginationText = styled.p`
+  margin-right: ${p => p.theme.space[6]};
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.fontSizes.xl};
+  text-transform: uppercase;
+`;
+
+export const PaginationNumber = styled.span`
+  font-size: ${p => p.theme.fontSizes.l};
 `;

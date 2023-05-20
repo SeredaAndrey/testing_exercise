@@ -16,7 +16,7 @@ const ListItem = ({
   avatar,
   followers,
   tweets,
-  following,
+  followingFlag,
   onClickFollowers,
 }) => {
   return (
@@ -28,16 +28,21 @@ const ListItem = ({
         </PhotoListItemBox>
       </InnerListItemBox2>
       <InnerListItemBox3>
-        <TextTwitsListItem>{tweets} Twits</TextTwitsListItem>
-        <TextFollowListItem>{followers} Followers</TextFollowListItem>
+        <TextTwitsListItem>
+          {tweets >= 1000 ? (tweets / 1000).toFixed(3) : tweets} Twits
+        </TextTwitsListItem>
+        <TextFollowListItem>
+          {followers >= 1000 ? (followers / 1000).toFixed(3) : followers}{' '}
+          Followers
+        </TextFollowListItem>
         <ButtonListItem
           type="button"
-          following={following}
+          followingFlag={followingFlag}
           onClick={() => {
-            onClickFollowers(_id);
+            onClickFollowers(_id, followingFlag);
           }}
         >
-          {following ? 'Following' : 'Follow'}
+          {followingFlag ? 'Following' : 'Follow'}
         </ButtonListItem>
       </InnerListItemBox3>
     </ListsItem>

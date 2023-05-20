@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { login, logout, register } from './operations';
+import { login, logout, register } from './authOperations';
 import { fetchUserData } from 'ApiService/ApiService';
+import { fetchSubscribeFollowers } from './usersOperators';
 
 const initialState = {
   name: null,
@@ -61,7 +62,8 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = false;
         state.userId = null;
-        state.user = null;
+        state.name = null;
+        state.avatarUrl = null;
         state.error = null;
       })
       .addCase(logout.rejected, (state, { payload }) => {
@@ -73,7 +75,6 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchUserData.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoading = false;
         state.name = payload.user.user;
         state.following = payload.user.following;
@@ -83,6 +84,15 @@ export const authSlice = createSlice({
       .addCase(fetchUserData.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(fetchSubscribeFollowers.fulfilled, (state, { payload }) => {
+        const index = state.following.findIndex(id => id === payload.data._id);
+        if (index >= 0) {
+          state.following.splice(index, 1);
+        } else {
+          state.following.push(payload.data._id);
+        }
+        state.isLoading = false;
       });
   },
 });

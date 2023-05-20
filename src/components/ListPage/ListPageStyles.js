@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 export const BodyContainer = styled.div`
-  transform: translateY(${p => p.theme.space[9]});
+  transform: translateY(${p => p.theme.space[8]});
 
-  margin-top: ${p => p.theme.space[5]};
+  margin-top: ${p => p.theme.space[0]};
 
   margin-left: auto;
   margin-right: auto;
@@ -12,8 +12,6 @@ export const BodyContainer = styled.div`
 `;
 
 export const ListContainer = styled.ul`
-  overflow: hidden;
-
   margin-top: ${p => p.theme.space[0]};
 
   margin-left: auto;
@@ -170,7 +168,7 @@ export const ButtonMore = styled.button`
 
   padding: ${p => p.theme.space[0]};
 
-  margin-bottom: ${p => p.theme.space[5]};
+  margin-bottom: ${p => p.theme.space[8]};
 
   border-radius: ${p => p.theme.radii.normal};
 

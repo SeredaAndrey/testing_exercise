@@ -58,10 +58,16 @@ export const App = () => {
             <Route
               index
               element={
-                <PrivateRoute redirectTo="/home" component={<HomePage />} />
+                <PrivateRoute redirectTo="/login" component={<HomePage />} />
               }
             ></Route>
           </Route>
+          <Route
+            path="*"
+            element={
+              <RestrictedRoute redirectTo="/login" component={<HomePage />} />
+            }
+          ></Route>
         </Routes>
       )}
     </ThemeProvider>
@@ -79,7 +85,10 @@ const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
   );
 };
 
-export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
+export const PrivateRoute = ({
+  component: Component,
+  redirectTo = '/login',
+}) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
 

@@ -8,7 +8,7 @@ export const HomeHeader = styled.header`
   flex-direction: column;
   align-items: center;
 
-  top: ${p => p.theme.space[4]};
+  top: ${p => p.theme.space[0]};
 
   /* margin-top: ${p => p.theme.space[5]}; */
   /* margin-left: auto; */

@@ -34,7 +34,10 @@ const HeaderPage = () => {
       </InneerHeaderContainer1>
       <InneerHeaderContainer2>
         <ImageHeaderContainer>
-          <HeaderImage src={userAvatar} alt={userName} />
+          <HeaderImage
+            src={userAvatar ? userAvatar : '../../images/human.png'}
+            alt={userName}
+          />
         </ImageHeaderContainer>
       </InneerHeaderContainer2>
       <InneerHeaderContainer3>

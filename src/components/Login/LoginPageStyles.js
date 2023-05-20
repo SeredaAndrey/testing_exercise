@@ -27,11 +27,6 @@ export const LoginContainer = styled.div`
   border-radius: ${p => p.theme.radii.big};
 
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
-
-  /* background-image: url('./images/picture_fon.png');
-  background-size: 308px 168px;
-  background-position-x: 36px;
-  background-position-y: 20px; */
 `;
 
 export const LoginTitle = styled.h2`
@@ -52,9 +47,6 @@ export const InputForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  //   height: ${p => p.theme.space[5]};
-  //   width: ${p => p.theme.space[12]};
 
   padding: ${p => p.theme.space[0]};
   margin: ${p => p.theme.space[0]};
@@ -130,11 +122,21 @@ export const ButtonNavigateLogin = styled.button`
   color: ${p => p.theme.colors.colorTextLight};
 `;
 
-// export const FoneImage = styled.img`
-//   position: absolute;
+export const FoneImage = styled.img`
+  position: absolute;
 
-//   top: ${p => p.theme.space[4]};
+  top: ${p => p.theme.space[4]};
 
-//   width: ${p => p.theme.space[12]};
-//   height: ${p => p.theme.space[9]};
-// `;
+  width: 308px;
+  height: 168px;
+`;
+
+export const LogoImage = styled.img`
+  position: absolute;
+
+  top: calc(${p => p.theme.space[3]} + ${p => p.theme.space[4]});
+  left: calc(${p => p.theme.space[3]} + ${p => p.theme.space[4]});
+
+  width: 76px;
+  height: 22px;
+`;

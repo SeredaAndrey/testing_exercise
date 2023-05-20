@@ -2,6 +2,7 @@ export const theme = {
   colors: {
     bgColor: '#766A92',
     bgColorBox: '#EBD8FF',
+    bgColorFoto: '#5736A3',
 
     bgColorGradient1: 'rgba(87, 54, 163, 1) 35%',
     bgColorGradient2: 'rgba(71, 28, 169, 1) 54.28%',

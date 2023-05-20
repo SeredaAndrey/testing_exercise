@@ -1,18 +1,22 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
+import primaryFone from '../../images/picture_fon.png';
+import logoImage from '../../images/Logo.png';
+
 import {
   Input,
   InputForm,
   InputLabel,
-  LoginContainer,
-  LoginTitle,
+  RegisterContainer,
+  RegisterTitle,
   ButtonRegister,
   ButtonNavigateReg,
 } from './RegistredPageStyles';
 import shortid from 'shortid';
 import { register } from 'redux/authOperations';
 import { useNavigate } from 'react-router-dom';
+import { FoneImage, LogoImage } from 'components/Login/LoginPageStyles';
 
 const RegisterPage = () => {
   const [user, setUser] = useState('');
@@ -32,8 +36,10 @@ const RegisterPage = () => {
   };
 
   return (
-    <LoginContainer>
-      <LoginTitle>Registration</LoginTitle>
+    <RegisterContainer>
+      <FoneImage src={primaryFone} alt="fon" />
+      <LogoImage src={logoImage} alt="logo GoIT" />
+      <RegisterTitle>Registration</RegisterTitle>
       <InputForm onSubmit={handleSubmit} autoComplete="off">
         <InputLabel htmlFor="userInputId">
           <Input
@@ -54,7 +60,7 @@ const RegisterPage = () => {
       >
         have an account? log in
       </ButtonNavigateReg>
-    </LoginContainer>
+    </RegisterContainer>
   );
 };
 

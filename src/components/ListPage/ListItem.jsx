@@ -3,12 +3,17 @@ import {
   InnerListItemBox1,
   InnerListItemBox2,
   InnerListItemBox3,
+  ListPageLogo,
   ListsItem,
   PhotoListItem,
   PhotoListItemBox,
   TextFollowListItem,
   TextTwitsListItem,
 } from './ListPageStyles';
+
+import goitLogo from '../../images/Logo.png';
+
+import imgHuman from '../../images/human.png';
 
 const ListItem = ({
   _id,
@@ -21,10 +26,12 @@ const ListItem = ({
 }) => {
   return (
     <ListsItem>
-      <InnerListItemBox1></InnerListItemBox1>
+      <InnerListItemBox1>
+        <ListPageLogo src={goitLogo} alt="GoIT" />
+      </InnerListItemBox1>
       <InnerListItemBox2>
         <PhotoListItemBox>
-          <PhotoListItem src={avatar} alt={user} />
+          <PhotoListItem src={avatar ? avatar : imgHuman} alt={user} />
         </PhotoListItemBox>
       </InnerListItemBox2>
       <InnerListItemBox3>

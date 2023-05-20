@@ -1,7 +1,6 @@
 {
   "name": "testing_exercise",
   "version": "0.1.0",
-  "main": "index.js",
   "homepage": "https://seredaandrey.github.io/testing_exercise/",
   "dependencies": {
     "@emotion/react": "^11.11.0",

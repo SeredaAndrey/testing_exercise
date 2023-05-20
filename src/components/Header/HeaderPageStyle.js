@@ -114,3 +114,8 @@ export const LogoutIco = styled.button`
   margin-top: ${p => p.theme.space[4]};
   margin-right: ${p => p.theme.space[4]};
 `;
+
+export const HeaderLogo = styled.img`
+  margin-right: auto;
+  margin-left: calc(${p => p.theme.space[3]} + ${p => p.theme.space[4]});
+`;

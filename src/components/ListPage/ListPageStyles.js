@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import primaryFone from '../../images/picture_fon.png';
+
 export const BodyContainer = styled.div`
   transform: translateY(${p => p.theme.space[8]});
 
@@ -46,6 +48,11 @@ export const ListsItem = styled.li`
 export const InnerListItemBox1 = styled.div`
   height: calc((100%-${p => p.theme.space[4]}) / 2);
   width: 100%;
+
+  background-image: url(${primaryFone});
+  background-size: 308px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 
   border-top-left-radius: ${p => p.theme.radii.big};
   border-top-right-radius: ${p => p.theme.radii.big};
@@ -101,6 +108,8 @@ export const PhotoListItem = styled.img`
   width: ${p => p.theme.space[7]};
 
   border-radius: ${p => p.theme.radii.round};
+
+  background-color: ${p => p.theme.colors.bgColorFoto};
 `;
 
 export const TextTwitsListItem = styled.p`
@@ -198,4 +207,12 @@ export const PaginationText = styled.p`
 
 export const PaginationNumber = styled.span`
   font-size: ${p => p.theme.fontSizes.l};
+`;
+
+export const ListPageLogo = styled.img`
+  margin-top: calc(${p => p.theme.space[3]} + ${p => p.theme.space[4]});
+  margin-left: calc(${p => p.theme.space[3]} + ${p => p.theme.space[4]});
+
+  width: 76px;
+  height: 22px;
 `;

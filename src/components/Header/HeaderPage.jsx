@@ -2,8 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiLogOut } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
+import imgHuman from '../../images/human.png';
+import GoITLogo from '../../images/Logo.png';
+
 import {
   HeaderImage,
+  HeaderLogo,
   HeaderName,
   HomeHeader,
   ImageHeaderContainer,
@@ -31,11 +35,12 @@ const HeaderPage = () => {
     <HomeHeader>
       <InneerHeaderContainer1>
         <HeaderName>{userName}</HeaderName>
+        <HeaderLogo src={GoITLogo} alt="GoIT"></HeaderLogo>
       </InneerHeaderContainer1>
       <InneerHeaderContainer2>
         <ImageHeaderContainer>
           <HeaderImage
-            src={userAvatar ? userAvatar : '../../images/human.png'}
+            src={userAvatar ? userAvatar : imgHuman}
             alt={userName}
           />
         </ImageHeaderContainer>

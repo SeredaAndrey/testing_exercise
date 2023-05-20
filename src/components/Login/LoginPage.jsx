@@ -1,6 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
+import primaryFone from '../../images/picture_fon.png';
+import logoImage from '../../images/Logo.png';
+
 import {
   Input,
   InputForm,
@@ -9,7 +12,8 @@ import {
   LoginTitle,
   ButtonLogin,
   ButtonNavigateLogin,
-  // FoneImage,
+  FoneImage,
+  LogoImage,
 } from './LoginPageStyles';
 import shortid from 'shortid';
 import { login } from 'redux/authOperations';
@@ -34,7 +38,8 @@ const LoginPage = () => {
 
   return (
     <LoginContainer>
-      {/* <FoneImage src="images/picture_fon.png" alt="fon" /> */}
+      <FoneImage src={primaryFone} alt="fon" />
+      <LogoImage src={logoImage} alt="logo GoIT" />
       <LoginTitle>Login</LoginTitle>
       <InputForm onSubmit={handleSubmit} autoComplete="off">
         <InputLabel htmlFor="userInputId">

@@ -19,6 +19,7 @@ import { fetchSubscribeFollowers, getUsers } from 'redux/usersOperators';
 import {
   selectInCount,
   selectInCountInPage,
+  selectInFilter,
   selectInPage,
   selectIsUsers,
 } from 'redux/usersSelectors';
@@ -34,6 +35,7 @@ const ListPage = () => {
   const page = useSelector(selectInPage);
   const count = useSelector(selectInCount);
   const countInPage = useSelector(selectInCountInPage);
+  const filter = useSelector(selectInFilter);
 
   useEffect(() => {
     if (!page) {
@@ -60,7 +62,9 @@ const ListPage = () => {
     if (Math.ceil(count / 3) < page + 1) {
       return;
     } else {
-      dispatch(getUsers({ page: page + 1, limit: 3 }));
+      dispatch(
+        getUsers({ page: page + 1, limit: 3, filter: filter, userId: userId })
+      );
     }
   };
 

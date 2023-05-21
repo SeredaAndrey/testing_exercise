@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import primaryFone from '../../images/picture_fon.png';
 
 export const BodyContainer = styled.div`
-  transform: translateY(${p => p.theme.space[8]});
+  transform: translateY(${p => p.theme.space[10]});
 
   margin-top: ${p => p.theme.space[0]};
 
@@ -177,7 +177,7 @@ export const ButtonMore = styled.button`
 
   padding: ${p => p.theme.space[0]};
 
-  margin-bottom: ${p => p.theme.space[8]};
+  margin-bottom: ${p => p.theme.space[11]};
 
   border-radius: ${p => p.theme.radii.normal};
 

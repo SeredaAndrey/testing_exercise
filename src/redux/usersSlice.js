@@ -8,6 +8,7 @@ const initialState = {
   count: null,
   countInPage: null,
   page: null,
+  filter: 'all',
 };
 
 export const usersSlice = createSlice({
@@ -24,11 +25,15 @@ export const usersSlice = createSlice({
         state.error = null;
         state.count = parseInt(payload.count);
         state.countInPage = parseInt(payload.countInPage);
-        if (state.page === parseInt(payload.page)) {
+        if (
+          state.page === parseInt(payload.page) ||
+          state.filter !== payload.filter
+        ) {
           state.users = payload.users;
         } else {
           state.users.push(...payload.users);
         }
+        state.filter = payload.filter;
         state.page = parseInt(payload.page);
       })
       .addCase(getUsers.rejected, (state, { payload }) => {

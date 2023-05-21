@@ -7,9 +7,12 @@ axios.defaults.baseURL = 'https://prepare-test-api-service.onrender.com/api';
 
 export const getUsers = createAsyncThunk(
   'users/getting',
-  async ({ page, limit }, { rejectWithValue }) => {
+  async ({ page, limit, filter = 'all', userId }, { rejectWithValue }) => {
+    console.log(userId);
     try {
-      const { data } = await axios.get(`/user/?page=${page}&limit=${limit}`);
+      const { data } = await axios.get(
+        `/user/?page=${page}&limit=${limit}&filter=${filter}&userId=${userId}`
+      );
       return data;
     } catch (error) {
       if (error.response.status === 400) {
